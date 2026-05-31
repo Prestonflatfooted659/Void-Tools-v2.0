@@ -25,6 +25,60 @@ def open_premium_links():
     webbrowser.open(C.DISCORD)
 
 
+def star_image_path():
+    shots = os.path.join(C.VOID_DIR, "screenshots")
+    for name in ("star.PNG", "Star.png", "star.png", "Star.PNG"):
+        path = os.path.join(shots, name)
+        if os.path.exists(path):
+            return path
+    return os.path.join(shots, "star.PNG")
+
+
+def open_star_unlock():
+    """Star funnel — Discord, GitHub repo, star screenshot."""
+    import webbrowser
+
+    s = get_settings()
+    if s.lang == "fr":
+        panel(
+            "STAR POUR DÉBLOQUER",
+            "Star le repo GitHub pour soutenir Void-Tools et débloquer le premium.",
+        )
+    else:
+        panel(
+            "STAR FOR UNLOCK",
+            "Star the GitHub repo to support Void-Tools and unlock premium.",
+        )
+    try:
+        webbrowser.open(C.DISCORD)
+        time.sleep(0.4)
+        webbrowser.open(C.GITHUB)
+        time.sleep(0.4)
+        star = star_image_path()
+        if os.path.exists(star):
+            if os.name == "nt":
+                os.startfile(star)
+            else:
+                webbrowser.open(star)
+    except Exception:
+        pass
+    pause()
+
+
+def append_star_unlock_items(items):
+    """Ajoute 4 slots Star for unlock en bas de catégorie."""
+    if not items:
+        return items
+    s = get_settings()
+    label = "Star pour débloquer [STAR]" if s.lang == "fr" else "Star for unlock [STAR]"
+    base = len(items)
+    extra = []
+    for i in range(4):
+        code = f"{base + i + 1:02d}"
+        extra.append((code, label, open_star_unlock))
+    return list(items) + extra
+
+
 def cls():
     os.system("cls" if os.name == "nt" else "clear")
 
@@ -83,14 +137,18 @@ def pause(msg=None):
 
 
 def fmt_label(label: str, max_len: int = 24) -> str:
-    clean = re.sub(r"\s*\[PREMIUM\]", "", label, flags=re.I).strip()
+    clean = re.sub(r"\s*\[(PREMIUM|STAR)\]", "", label, flags=re.I).strip()
     if len(clean) > max_len:
         clean = clean[: max_len - 1] + "…"
     return clean
 
 
+def is_star_unlock(label: str) -> bool:
+    return "[STAR]" in str(label).upper()
+
+
 def is_premium(label: str) -> bool:
-    return "[PREMIUM]" in str(label).upper()
+    return "[PREMIUM]" in str(label).upper() or is_star_unlock(label)
 
 
 def sort_free_first(items):

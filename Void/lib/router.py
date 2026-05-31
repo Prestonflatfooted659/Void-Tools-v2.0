@@ -18,7 +18,12 @@ from .pages import build_pages_data
 from .plugins import discover_plugins
 from .search import run_search_ui
 from .ui import make_card_cell, make_title_text, monitor_block
-from .void_common import cls, is_arrow, poll_console_key, safe_action, sort_free_first
+from .void_common import cls, is_arrow, poll_console_key, safe_action, sort_free_first, append_star_unlock_items
+
+STAR_CATEGORIES = {
+    "osint", "attack", "nuker", "discord", "social", "roblox",
+    "ip-web", "generator", "crypto-utils", "darkweb", "plugins",
+}
 
 
 class MasterRouter:
@@ -51,6 +56,8 @@ class MasterRouter:
         for key, items in self.pages_data.items():
             if key not in skip:
                 self.pages_data[key] = sort_free_first(items)
+            if key in STAR_CATEGORIES:
+                self.pages_data[key] = append_star_unlock_items(self.pages_data[key])
 
     def _cat_key(self):
         return self.categories[self.cat_idx][0]

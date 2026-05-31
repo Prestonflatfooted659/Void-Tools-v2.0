@@ -13,6 +13,7 @@ from lib import constants as C
 from lib import tools as T
 from lib.pages import build_pages_data, _NUKER_ACTIONS
 from lib.remote import tool_remote_sync
+from lib.void_common import open_star_unlock
 
 ERRORS = []
 WARNINGS = []
@@ -75,7 +76,7 @@ def classify_action(action):
     mod = getattr(action, "__module__", "")
     name = getattr(action, "__name__", "")
 
-    if action is T.star:
+    if action is T.star or action is open_star_unlock:
         return ("star", None)
     if action in (
         T.tool_changelog, T.tool_credits, T.tool_premium_shop,
